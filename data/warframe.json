@@ -1,0 +1,79 @@
+{
+    "builds": {
+        "Tekko": {
+            "desc": "",
+            "link": "https://i.imgur.com/MJjWgC9.jpg",
+            "categ": "Melee"
+        },
+        "Nikana": {
+            "desc": "",
+            "link": "https://i.imgur.com/CyKZ5VC.jpg",
+            "categ": "Melee"
+        },
+        "Secura Dual Cestra": {
+            "desc": "",
+            "link": "https://i.imgur.com/sVrk9if.jpg",
+            "categ": "Secundaria"
+        },
+        "Banshee": {
+            "desc": "",
+            "link": "https://i.imgur.com/TEbCKMr.jpg",
+            "categ": "Warframe"
+        },
+        "Destreza": {
+            "desc": "",
+            "link": "https://i.imgur.com/gOtNZku.jpg",
+            "categ": "Melee"
+        },
+        "Tigris": {
+            "desc": "",
+            "link": "https://i.imgur.com/N4mZJRd.jpg",
+            "categ": "Primaria"
+        },
+        "Boltor": {
+            "desc": "",
+            "link": "https://i.imgur.com/JyIBlcT.jpg",
+            "categ": "Primaria"
+        },
+        "Dread": {
+            "desc": "",
+            "link": "https://i.imgur.com/7ZRfY8L.jpg",
+            "categ": "Primaria"
+        },
+        "Akstiletto": {
+            "desc": "",
+            "link": "https://i.imgur.com/8tAT6GZ.jpg",
+            "categ": "Secundaria"
+        },
+        "Sicarus": {
+            "desc": "",
+            "link": "https://i.imgur.com/vOa0qHP.jpg",
+            "categ": "Secundaria"
+        },
+        "Aklex": {
+            "desc": "",
+            "link": "https://i.imgur.com/y75b1TW.jpg",
+            "categ": "Secundaria"
+        },
+        "Nami Skyla": {
+            "desc": "",
+            "link": "https://i.imgur.com/XnzLAzI.jpg",
+            "categ": "Melee"
+        },
+        "Pyrana": {
+            "desc": "",
+            "link": "https://i.imgur.com/4ibn9KI.jpg",
+            "categ": "Secundaria"
+        },
+        "Arca Plasmor": {
+            "desc": "Sejam bem vindos a mais um na cozinha com o s\u00e9rgio ... o meu nome .. \u00e9 ricardo e hoje temos aqui uma Build Da Arca Plasmor Sem Riven H\u00edbrido Com Corrosivo e com uma pitada de Radia\u00e7\u00e3o",
+            "link": "https://i.imgur.com/gGVpEki.jpg",
+            "categ": "Primaria"
+        },
+        "Kek": {
+            "desc": "Really gud build bery nice",
+            "link": "www.kek.kek",
+            "categ": "Primaria"
+        }
+    }
+}

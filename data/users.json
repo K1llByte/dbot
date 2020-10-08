@@ -1,0 +1,68 @@
+{
+    "users": {
+        "181002804813496320": {
+            "name": "KillByte",
+            "stats": {
+                "level": 1,
+                "badges": [
+                    ":beginner:"
+                ],
+                "exp": 10,
+                "cash": 29999989799
+            },
+            "permissions": 255
+        },
+        "459813370753712148": {
+            "name": "Flat",
+            "stats": {
+                "level": 7,
+                "badges": [
+                    ":beginner:"
+                ],
+                "exp": 202,
+                "cash": 100
+            },
+            "permissions": 0
+        },
+        "190153364384907265": {
+            "name": "[27]RC_Snake",
+            "stats": {
+                "level": 1,
+                "badges": [],
+                "exp": 20,
+                "cash": 100
+            },
+            "permissions": 0
+        },
+        "215470418067324928": {
+            "name": "Manilator",
+            "stats": {
+                "level": 1,
+                "badges": [],
+                "exp": 5,
+                "cash": 100
+            },
+            "permissions": 0
+        },
+        "397389065240182794": {
+            "name": "Trina",
+            "stats": {
+                "level": 3,
+                "badges": [],
+                "exp": 6,
+                "cash": 100
+            },
+            "permissions": 0
+        },
+        "222470314179690497": {
+            "name": "MataBolachas",
+            "stats": {
+                "level": 2,
+                "badges": [],
+                "exp": 0,
+                "cash": 100
+            },
+            "permissions": 0
+        }
+    }
+}
