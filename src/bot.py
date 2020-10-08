@@ -11,7 +11,7 @@ from control.model.users import Perms
 
 ################################### bot startup ######################################
 
-TOKEN = 'NTAxNTQxNzYzNzIzMjk2Nzc4.Dqe1Vw.nnBaAkrJ6qvDM-ttnApqnKexv28'
+TOKEN = None
 
 bot = Bot(command_prefix='*', help_command=None)
 
