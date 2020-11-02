@@ -15,9 +15,11 @@ TOKEN = None
 try:
     from auth import TOKEN
 except ModuleNotFoundError as mnf:
-    if TOKEN == None:
-        print( error_log("Missing TOKEN, auth.py file not present or TOKEN not defined") )
-        exit(1)
+    pass
+
+if TOKEN == None:
+    print( error_log("Missing TOKEN, auth.py file not present or TOKEN not defined") )
+    exit(1)
 
 bot = Bot(command_prefix='*', help_command=None)
 
