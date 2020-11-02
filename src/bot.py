@@ -12,6 +12,12 @@ from control.model.users import Perms
 ################################### bot startup ######################################
 
 TOKEN = None
+try:
+    from auth import TOKEN
+except ModuleNotFoundError as mnf:
+    if TOKEN == None:
+        print( error_log("Missing TOKEN, auth.py file not present or TOKEN not defined") )
+        exit(1)
 
 bot = Bot(command_prefix='*', help_command=None)
 
@@ -152,8 +158,8 @@ if __name__ == '__main__':
     ##### Run #####
     try:
         bot.run(TOKEN)
-    except:
-        pass
+    except Exception as e:
+        print( error_log(e) )
 
     ##### End #####
     bot.data.save()
