@@ -14,6 +14,7 @@ class Warframe(commands.Cog):
 
     @commands.command(name='plat', description='Dado um numero de platinas ele devolve o valor em euros dessas platinas (pode ser passado o valor em percentagem do desconto das platinas)')
     async def plat(self ,ctx, inp, desc=0):
+        # TRASH CODE
         d = (100-float(desc))/100
         plat = int(inp)
         if plat <= 75:
@@ -38,11 +39,12 @@ class Warframe(commands.Cog):
 
 
     @commands.command(name='ducats', description='Converte de ducats para o numero de pecas necessárias para obter esses ducats em pecas de 45 ducats com um preço de 5 platinas cada.')
-    async def ducats(self,ctx, duc=0):
-        if duc == 0:
-            await ctx.send('Insira um numero de ducats')
+    async def ducats(self,ctx, ducats=0):
+        if not (ducats != 0 and ducats < 100000):
+            await ctx.send('Insira um numero de ducats válido')
         else:
-            ducats = int(duc)
+            # TRASH CODE
+            #ducats = int(duc)
             pecas = 0
             while ducats > 0:
                 ducats = ducats - 45
