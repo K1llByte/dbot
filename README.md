@@ -31,6 +31,12 @@ TOKEN='token_string'
 
 ```shell
 python3 src/bot.py
-# or
+```
+
+### Script
+
+For unix systems there is the run.sh script that executes previous commands and creates the `src/auth.py` file where you need to insert your Discord Bot App Token.
+
+```shell
 ./run.sh
 ```
