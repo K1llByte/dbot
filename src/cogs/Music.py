@@ -177,7 +177,7 @@ class Music(commands.Cog):
                 await ctx.send(embed=embed)
 
         
-    @commands.command(name='download', description='Download youtube audio', aliases=['dl'])
+    @commands.command(name='download', description='Download youtube audio', aliases=['dl'],brief=Perms.OWNER)
     async def download(self,ctx, url):
         player = await YTDLSource.from_url(url, loop=self.bot.loop, stream=False)
         await ctx.send(file=discord.File(f'downloads/{player.id}.mp3'))

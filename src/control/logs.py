@@ -1,6 +1,5 @@
 from datetime import datetime
 
-
 def __date_log_format():
     return datetime.now().strftime("%H:%M")
 
@@ -16,3 +15,5 @@ def command_log(username, command):
 
 def error_log(message):
     return "({date}) [ERROR] > {message}".format(date=__date_log_format(), message=message)
+
+#self.bot.logger.log()
