@@ -8,7 +8,7 @@ class Logger:
         if logs_filename != "":
             self.is_stdout = False
             sys.stdout = open(logs_filename, 'w')
-    
+
     def __del__(self):
         if not self.is_stdout:
             sys.stdout.close()
@@ -27,7 +27,3 @@ class Logger:
 
     def error(self, message):
         print("({date}) [ERROR] > {message}".format(date=Logger.__date_log_format(), message=message))
-
-logger = Logger("file.logs")
-logger.info("You are gay :)")
-logger.error("YOU CANNO'T NOT BE GAY!!!!!1!!1!")
