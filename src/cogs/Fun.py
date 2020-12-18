@@ -31,14 +31,16 @@ class Fun(commands.Cog):
             if dm == None:
                 dm = await u.create_dm()
             
-            can_be_choosen = tmp
-            can_be_choosen.remove(u)
+            can_be_choosen = tmp.copy()
+            if u in can_be_choosen: 
+                can_be_choosen.remove(u)
             if can_be_choosen == set([]):
                 await ctx.send("Unexpected error")
                 return
 
             selected = random.sample(can_be_choosen,1)[0]
             tmp.remove(selected)
+
             await dm.send("Tu és amigo secreto de: {}".format(str(selected)))
 
         await ctx.send("Created secret friend game")
