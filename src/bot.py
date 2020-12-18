@@ -21,7 +21,7 @@ if TOKEN == None:
     print( error_log("Missing TOKEN, auth.py file not present or TOKEN not defined") )
     exit(1)
 
-bot = Bot(command_prefix='*', help_command=None)
+bot = Bot(command_prefix='+', help_command=None)
 
 all_cogs = list(map(lambda x: x[:-3] , filter(lambda x: not x.startswith('__') , os.listdir('src/cogs/'))))
 
