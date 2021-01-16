@@ -14,6 +14,25 @@ class Utils(commands.Cog):
         self.bot = bot
         
 
+    @commands.command(name='set_banner',description='Modifies the context server banner')
+    async def set_banner(self,ctx, url):
+        #ctx.message.attachments[0].url
+        
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as r:
+                data = await r.read()
+
+        await ctx.guild.edit(banner=data)
+
+    @commands.command(name='set_server_avatar',description='Modifies the context server icon')
+    async def set_server_avatar(self, ctx, url):
+        
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as r:
+                data = await r.read()
+
+        await ctx.guild.edit(icon=data)
+
 
     @commands.command(name='echo',description='O bot repete qualquer frase que for esccrita.')
     async def echo(self,ctx, *args):
