@@ -160,25 +160,21 @@ class Music(commands.Cog):
 
     @commands.command(name='queue', description='List music queue', aliases=['q'])
     async def queue(self,ctx):
-
         if ctx.voice_client != None:
-            
-            
             # TODO: indicate that is paused if that's the case
             if ctx.voice_client.source != None:
-                #embed = discord.Embed(title=f'Now playing:  `{ctx.voice_client.source.title}`',color=self.bot.embed_color)
-                self.nowplaying(ctx)
-                #if self.queue == []:
-                #    await ctx.send(embed=discord.Embed(title='Sadly the queue is empty :c',color=self.bot.embed_color))
+                embed = discord.Embed(title=f'Now playing:  `{ctx.voice_client.source.title}`',color=self.bot.embed_color)
+                # self.nowplaying(ctx)
                 
                 _sizeq = len(self.queue)
                 for i in range(_sizeq):
                     embed.add_field(name=f'**{i+1}.** `{self.queue[_sizeq-i-1].title}`', value='============================', inline=False)
                 await ctx.send(embed=embed)
-
+            elif self.queue == []:
+               await ctx.send(embed=discord.Embed(title='Sadly the queue is empty :c',color=self.bot.embed_color))
         
-    @commands.command(name='download', description='Download youtube audio', aliases=['dl'],brief=Perms.OWNER)
-    async def download(self,ctx, url):
+    @commands.command(name='download', description='Download youtube audio', aliases=['dl'],brief=Perms.DEFAULT)
+    async def download(self, ctx, url):
         player = await YTDLSource.from_url(url, loop=self.bot.loop, stream=False)
         await ctx.send(file=discord.File(f'downloads/{player.id}.mp3'))
         if self.REMOVE_DOWNLOADS:
