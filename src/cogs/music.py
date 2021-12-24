@@ -2,7 +2,6 @@ import asyncio
 import discord
 from discord.ext import commands
 import youtube_dl
-#from queue import Queue
 from control.model.users import Perms
 import os
 
@@ -76,14 +75,6 @@ class Music(commands.Cog):
 
     @commands.command(name='play', description='Play\'s music', aliases=['p'])
     async def play(self, ctx, *, url):
-#        if ctx.voice_client == None:
-#            await ctx.author.voice.channel.connect()
-#
-#        async with ctx.typing():
-#            player = await YTDLSource.from_url(url, loop=self.bot.loop, stream=True)
-#            ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
-#
-#        await self.nowplaying(ctx)
         if ctx.voice_client == None:
             await ctx.author.voice.channel.connect()
 
@@ -125,6 +116,7 @@ class Music(commands.Cog):
             self.queue = []
             ctx.voice_client.stop()
 
+
     @commands.command(name='skip', description='Stops current playing music and plays next in the queue',aliases=['s','n','next'])
     async def skip(self,ctx, next_idx=1):
         if next_idx < 0 or next_idx % int(next_idx) or next_idx > len(self.queue):
@@ -135,7 +127,6 @@ class Music(commands.Cog):
                 self.queue = self.queue[:(-1)*(next_idx-1)]
             ctx.voice_client.stop()
             print('ctx.voice_client.stop()')
-        
 
 
     @commands.command(name='volume', description='Music playing audio volume', aliases=['v'])
@@ -155,7 +146,6 @@ class Music(commands.Cog):
 
             embed = discord.Embed(title=tmp, color=self.bot.embed_color)
             await ctx.send(embed=embed)
-            
 
 
     @commands.command(name='queue', description='List music queue', aliases=['q'])
@@ -172,15 +162,17 @@ class Music(commands.Cog):
                 await ctx.send(embed=embed)
             elif self.queue == []:
                await ctx.send(embed=discord.Embed(title='Sadly the queue is empty :c',color=self.bot.embed_color))
-        
+
+
     @commands.command(name='download', description='Download youtube audio', aliases=['dl'],brief=Perms.DEFAULT)
     async def download(self, ctx, url):
-        player = await YTDLSource.from_url(url, loop=self.bot.loop, stream=False)
-        await ctx.send(file=discord.File(f'downloads/{player.id}.mp3'))
-        if self.REMOVE_DOWNLOADS:
-            os.remove(f'downloads/{player.id}.mp3')
-            if len(os.listdir('downloads/')) == 0:
-                os.rmdir('downloads/')
+        async with ctx.typing():
+            player = await YTDLSource.from_url(url, loop=self.bot.loop, stream=False)
+            await ctx.send(file=discord.File(f'downloads/{player.id}.mp3'))
+            if self.REMOVE_DOWNLOADS:
+                os.remove(f'downloads/{player.id}.mp3')
+                if len(os.listdir('downloads/')) == 0:
+                    os.rmdir('downloads/')
 
 
 
