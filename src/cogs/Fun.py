@@ -19,10 +19,10 @@ class Fun(commands.Cog):
     async def secret_friend(self,ctx,*users: discord.User):
         if users == ():
             await ctx.send("You have to mention users")
-        print(users)
+        # print(users)
         it = set(users)
         tmp = set(users)
-        print(tmp)
+        # print(tmp)
 
         for u in it:
             print(u)

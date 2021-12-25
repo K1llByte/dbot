@@ -48,7 +48,6 @@ class YTDLSource(discord.PCMVolumeTransformer):
         if 'entries' in data:
             # take first item from a playlist
             data = data['entries'][0]
-            #print(data)
 
         filename = data['url'] if stream else ytdl.prepare_filename(data)
         return cls(discord.FFmpegPCMAudio(filename, **ffmpeg_options), data=data)
@@ -93,7 +92,6 @@ class Music(commands.Cog):
                         ctx.voice_client.play(self.queue.pop(), after=loop_play)
                     else:
                         return
-
             ctx.voice_client.play(player, after=loop_play)
         await self.nowplaying(ctx)
 
@@ -163,8 +161,27 @@ class Music(commands.Cog):
             elif self.queue == []:
                await ctx.send(embed=discord.Embed(title='Sadly the queue is empty :c',color=self.bot.embed_color))
 
+    # TODO: 'move' command to move a music from queue positions
+    @commands.command(name='remove', description='Remove music from queue', aliases=['rm', 'del'])
+    async def remove(self, ctx, idx: int):
+        # TODO: needs validation
+        try:
+            self.queue.remove(idx)
+            await ctx.send(f'Removed `{idx}` from queue')
+        except:
+            await ctx.send(f'Index `{idx}` doesn\'t exist')
 
-    @commands.command(name='download', description='Download youtube audio', aliases=['dl'],brief=Perms.DEFAULT)
+    # @commands.command(name='move', description='Move music position from queue', aliases=['mv', 'mov'])
+    # async def remove(self, ctx, _from: int, _to: int):
+    #     # TODO: needs validation
+    #     slef.queue.pop(_from)
+    #     try:
+    #         self.queue.remove(idx)
+    #         await ctx.send(f'Removed `{idx}` from queue')
+    #     except:
+    #         await ctx.send(f'Index `{idx}` doesn\'t exist')
+
+    @commands.command(name='download', description='Download youtube audio', aliases=['dl'])
     async def download(self, ctx, url):
         async with ctx.typing():
             player = await YTDLSource.from_url(url, loop=self.bot.loop, stream=False)

@@ -81,7 +81,6 @@ async def on_ready():
     #print('# Cogs loaded: ' + str(list(bot.cogs.keys())))
 
 
-
 def load_cogs(ext):
     for ext in all_cogs:
         try:
