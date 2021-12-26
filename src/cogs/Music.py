@@ -161,25 +161,46 @@ class Music(commands.Cog):
             elif self.queue == []:
                await ctx.send(embed=discord.Embed(title='Sadly the queue is empty :c',color=self.bot.embed_color))
 
+
     # TODO: 'move' command to move a music from queue positions
     @commands.command(name='remove', description='Remove music from queue', aliases=['rm', 'del'])
     async def remove(self, ctx, idx: int):
-        # TODO: needs validation
-        try:
-            self.queue.remove(idx)
-            await ctx.send(f'Removed `{idx}` from queue')
-        except:
-            await ctx.send(f'Index `{idx}` doesn\'t exist')
+        size_queue = len(self.queue)
+        true_idx = size_queue - int(idx)
+        if true_idx < size_queue and true_idx >= 0:
+            try:
+                del self.queue[true_idx]
+                await ctx.send(f'Removed `{idx}` from queue')
+                return;
+            except Exception as e:
+                pass
 
-    # @commands.command(name='move', description='Move music position from queue', aliases=['mv', 'mov'])
-    # async def remove(self, ctx, _from: int, _to: int):
-    #     # TODO: needs validation
-    #     slef.queue.pop(_from)
-    #     try:
-    #         self.queue.remove(idx)
-    #         await ctx.send(f'Removed `{idx}` from queue')
-    #     except:
-    #         await ctx.send(f'Index `{idx}` doesn\'t exist')
+        await ctx.send(f'Index `{idx}` doesn\'t exist')
+
+
+    @commands.command(name='move', description='Move music position from queue', aliases=['mv', 'mov'])
+    async def move(self, ctx, _from: int, _to: int):
+        size_queue = len(self.queue)
+        _from = size_queue - int(_from)
+        _to = size_queue - int(_to)
+
+        if _from < size_queue and _from >= 0 \
+            and _to < size_queue and _to >= 0:
+            try:
+                print(f"from: {_from}\nto: {_to}")
+                print("self.queue",self.queue)
+                self.queue.insert(_to, self.queue[_from])
+                if _to > _from:
+                    del self.queue[_from]
+                else:
+                    del self.queue[_from+1]
+                await ctx.send(f'Moved')
+                return;
+            except:
+                pass
+        
+        await ctx.send(f'Whoa calm down cowboy')
+
 
     @commands.command(name='download', description='Download youtube audio', aliases=['dl'])
     async def download(self, ctx, url):
