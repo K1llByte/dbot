@@ -7,15 +7,12 @@ class Crypto:
 
         res = requests.get('https://api.cryptowat.ch/markets/kraken')
         if res.status_code == 200:
-            print('Success')
             self.symbols = []
             for curr in res.json()['result']:
                 if curr['pair'].endswith('eur') and curr['active']:
                     self.symbols.append(curr['pair'][:-3])
         else:
-            print('No success')
             self.symbols = None
-        print(self.symbols)
 
 
     def get_user_coins(self, user_id):

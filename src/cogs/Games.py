@@ -11,7 +11,7 @@ class Games(commands.Cog):
 
 
     @commands.command(name="roll",description="Aposta um valor de cash em um dos valores da roulette tradicional de casino")
-    async def roll(self,ctx,choice:str, bet:int): # TODO: Refactor code
+    async def roll(self,ctx, choice:str, bet:int): # TODO: Refactor code
         if bet <= 0:
             return
         

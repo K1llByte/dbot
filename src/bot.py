@@ -32,36 +32,34 @@ bot.embed_color = 0x000000#0x519181
 
 ################################### bot events ######################################
 
+async def process_cmd_with_check(message):
+    try:
+        #Permission checking
+        cmd = message.content.split()[0][1:]
+        cmd_perms = bot.all_commands[cmd].brief
+        user_data = bot.data.users.get_user(message.author.id)
+        if (not (cmd_perms == None or cmd_perms == Perms.DEFAULT)) and (user_data == None or not user_data.has_permissions(cmd_perms)):
+            print(error_log('No permitions'))
+        else:
+            await bot.process_commands(message)
+    except KeyError:
+        #TODO: Various Exceptions handlings here
+        print(error_log('Invalid command'))
+
 @bot.event
 async def on_message(message):
     if message.content.lower() == "diz ola bob":
         await message.channel.send("Olá Bob!\n:black_heart:️:heart:\n   :tongue:")
 
     if message.content.startswith(bot.command_prefix):
-
         print( command_log(message.author.name + "#" + message.author.discriminator, message.content) )
-        #print('> ' + message.content)
 
-        try:
-            #Permission checking
-            cmd = message.content.split()[0][1:]
-            cmd_perms = bot.all_commands[cmd].brief
-            user_data = bot.data.users.get_user(message.author.id)
-            if (not (cmd_perms == None or cmd_perms == Perms.DEFAULT)) and (user_data == None or not user_data.has_permissions(cmd_perms)):
-                print(error_log('No permitions'))#await message.channel.send('No permitions')
-            else:
-                await bot.process_commands(message)
-
-        except KeyError:
-            #TODO: Various Exceptions handlings here
-            print(error_log('Invalid command'))
-            
+        await process_cmd_with_check(after)
 
 
 @bot.event
 async def on_message_edit(before, after):
-	await bot.process_commands(after)
-
+    await process_cmd_with_check(after)
 
 @bot.event
 async def on_command_error(event, *args, **kwargs):

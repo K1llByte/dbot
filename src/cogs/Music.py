@@ -190,7 +190,7 @@ class Music(commands.Cog):
                 print(f"from: {_from}\nto: {_to}")
                 print("self.queue",self.queue)
                 self.queue.insert(_to, self.queue[_from])
-                if _to > _from:
+                if _to < _from:
                     del self.queue[_from]
                 else:
                     del self.queue[_from+1]
