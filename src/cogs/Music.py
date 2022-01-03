@@ -82,7 +82,8 @@ class Music(commands.Cog):
 
         if ctx.voice_client.is_playing():
             self.queue.insert(0,player)
-            await ctx.send(f'Queued: `{url}`')
+            embed_queued = discord.Embed(title=f'Queue:  `{player.title}`', color=self.bot.embed_color)
+            await ctx.send(embed=embed_queued)
         else:
             def loop_play(e):
                 if e:
@@ -93,7 +94,8 @@ class Music(commands.Cog):
                     else:
                         return
             ctx.voice_client.play(player, after=loop_play)
-        await self.nowplaying(ctx)
+            embed_queued = discord.Embed(title=f'Playing:  `{player.title}`', color=self.bot.embed_color)
+            await ctx.send(embed=embed_queued)
 
 
     @commands.command(name='pause', description='Pause current music')
@@ -152,8 +154,6 @@ class Music(commands.Cog):
             # TODO: indicate that is paused if that's the case
             if ctx.voice_client.source != None:
                 embed = discord.Embed(title=f'Now playing:  `{ctx.voice_client.source.title}`',color=self.bot.embed_color)
-                # self.nowplaying(ctx)
-                
                 _sizeq = len(self.queue)
                 for i in range(_sizeq):
                     embed.add_field(name=f'**{i+1}.** `{self.queue[_sizeq-i-1].title}`', value='============================', inline=False)

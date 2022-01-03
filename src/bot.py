@@ -54,7 +54,7 @@ async def on_message(message):
     if message.content.startswith(bot.command_prefix):
         print( command_log(message.author.name + "#" + message.author.discriminator, message.content) )
 
-        await process_cmd_with_check(after)
+        await process_cmd_with_check(message)
 
 
 @bot.event
@@ -117,8 +117,10 @@ async def help(ctx,cmd=''):
                 synopse = synopse + " [" + param + "]"
                 
             embed.add_field(name="Como utilizar:",value="`" + synopse + "`",inline=False)
+
+            aliases_as_text = f"`{'`, `'.join(command.aliases)}`"
             if len(command.aliases) > 0:
-                embed.add_field(name="Alias:",value=command.aliases,inline=False)
+                embed.add_field(name="Alias:",value=aliases_as_text,inline=False)
             await ctx.send(embed=embed)
 
         else:
