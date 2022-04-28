@@ -34,12 +34,31 @@ class Utils(commands.Cog):
         await ctx.guild.edit(icon=data)
 
 
-    @commands.command(name='echo',description='O bot repete qualquer frase que for esccrita.')
+    @commands.command(name='echo',description='O bot repete qualquer frase que for escrita.')
     async def echo(self,ctx, *args):
-        await ctx.message.delete()
-        value = ' '.join(args)
-        await ctx.send(value)
+        try:
+            guild = self.bot.get_guild(int(args[0]))
+            if args[0] != None and guild != None:
+                channel = guild.get_channel(int(args[1]))
+                # await ctx.send("Invalid ID")
 
+                if args[1] == None or channel == None:
+                    await ctx.send("Missing or invalid channel ID")
+                    return;
+                    
+                if args[2] == None:
+                    await ctx.send("Missing message")
+                    return;
+
+                await channel.send(" ".join(args[2:]))
+                
+            else:
+                await ctx.message.delete()
+                value = ' '.join(args)
+                await ctx.send(value)
+
+        except IndexError:
+            await ctx.send("Missing arguments")
 
 
     @commands.command(name='avatar', description='Mostra o avatar de alguem que seja identificado ou o seu próprio caso não seja dado argumento')

@@ -166,4 +166,4 @@ if __name__ == '__main__':
     bot.data.save()
     print( info_log('Saved data') )
     print( info_log('Exiting . . .') )
-    asyncio.run(bot.logout())
+    asyncio.run(bot.close())
